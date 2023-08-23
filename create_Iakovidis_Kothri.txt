@@ -1,0 +1,80 @@
+
+-- Making sure the Date format is DD-MM-YYYY
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-YYYY' NLS_DATE_LANGUAGE='english'; 
+
+
+-- Creating the owner table
+
+create table owner (
+tin number(9) not null,
+o_name varchar2(50),
+o_lastname varchar2(50),
+o_dateofbirth date,
+o_city varchar2(50),
+o_email varchar2(50),
+o_contactnumber varchar2(50),
+o_adress varchar2(50));
+
+
+
+-- Creating the apartment table
+
+create table apartment (
+a_id number(8) not null,
+owner_tin number(9),
+a_street varchar2(50),
+a_streetNum varchar2(50),
+a_postalcode number(5),
+a_city varchar2(50),
+a_floor char(1),
+a_price numeric(8,2));
+
+
+-- Creating the tenants table:
+
+create table tenants (
+t_id number(5) not null,
+t_name varchar2(50),
+t_lastname varchar2(50),
+t_dateofbirth date,
+gender char(1),
+t_contactnumber varchar2(50),
+t_email varchar2(50),
+number_of_tenants number(2),
+t_country varchar2(50));
+
+
+
+-- Creating the rental table:
+
+create table rental (
+r_id number(3) not null,
+r_ap_id number(8),
+r_tenant_id number(5),
+r_startdate date,
+r_enddate date);
+
+
+
+-- Creating the reviews table:
+
+
+create table reviews (
+rev_id number(5) not null,
+rev_date date,
+rev_starpoint varchar(1),
+rev_text varchar2(100),
+rev_tenant_id number(5),
+rev_a_id number(8));
+
+
+
+
+
+
+
+
+
+
+
+
