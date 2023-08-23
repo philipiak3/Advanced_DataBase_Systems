@@ -1,0 +1,88 @@
+-- Inserting Values for the Owner table
+
+insert into owner values ('123456789', 'GIORGOS', 'PAPADOPOULOS', '05-JAN-1980', 'SPARTA', 'g.papadopoulos@mail.com', '+306976245212', 'AGIOU NIKOLAOU 4');
+insert into owner values ('768902826', 'IOANNA', 'PAPAGEORGIOU', '12-JUL-1965', 'THESSALONIKI', 'papageorgiou@mail.com', '+306983256873', 'TSIMISKI 56');
+insert into owner values ('678256934', 'DIMITRIS', 'SIMOPOULOS', '05-AUG-1970', 'VOLOS', 'gsimopoulos@mail.com', '+306987345619', 'ANALIPSIS 6');
+insert into owner values ('914328903', 'GIANNIS', 'THEOHARIS', '20-JUL-1990', 'HERAKLION', 'theoharis@mail.com', '+306972341567', 'POLITECHNIOU 79');
+insert into owner values ('926734568', 'MARIA DESPOINA', 'PANAGIOTIDOU', '03-NOV-1986', 'ATHENS', 'panagiotidou@mail.com', '+306934567889', 'IOANNINON 3B');
+
+-- Adding 1 single insert query using a different method:
+-- insert into owner (tin, o_name, o_lastname, o_dateofbirth, o_city, o_email, o_contactnumber, o_adress) values ('123456789', 'GIORGOS', 'PAPADOPOULOS', '05-JAN-1980', 'SPARTA', 'g.papadopoulos@mail.com', '+306976245212', 'AGIOU NIKOLAOU 4');
+
+
+
+-- Inserting Values for the Apartment table
+
+insert into apartment values ('65663688', '123456789', 'ARISTOTELOUS', '5A', '54631', 'THESSALONIKI', '1', '50');
+insert into apartment values ('10145698', '768902826', 'PAPAFI', '4', '72400', 'ATHENS', '0', '90');
+insert into apartment values ('24587969', '678256934', 'SAINT GEORGE', '10', '56300', 'HERAKLION', '3', '34');
+insert into apartment values ('35874715', '914328903', 'ERMOU', '45B', '54178', 'ATHENS', '1', '75');
+insert into apartment values ('55203697', '768902826', 'KOLOKOTRONI', '2', '89123', 'THESSALONIKI', '2', '300');
+insert into apartment values ('79653325', '926734568', 'ANTIGONIDON', '6', '54631', 'THESSALONIKI', '2', '200');
+insert into apartment values ('18789868', '768902826', 'EVANS', '6', '87564', 'HERAKLION', '6', '65');
+insert into apartment values ('45782475', '926734568', 'ARISTOTELOUS', '206', '32764', 'ATHENS', '8', '250');
+insert into apartment values ('32425010', '123456789', 'TSIMISKI', '9', '54631', 'THESSALONIKI', '0', '180');
+insert into apartment values ('65599634', '926734568', 'TRIKOUPI', '7', '95432', 'VOLOS', '4', '100');
+
+
+
+-- Inserting Values for the Tenants table
+
+insert into tenants values ('12345', 'ALEXANDER', 'SMITH', '05-AUG-1995', 'M', '+495647892563', 'smith@mail.com', '3', 'GERMANY');
+insert into tenants values ('44444', 'ANN', 'LEE', '16-SEP-2000', 'F', '+346578452147', 'annlee@mail.com', '1', 'SPAIN');
+insert into tenants values ('56734', 'DESPOINA', 'GEORGIOU', '03-MAY-1990', 'F', '+306978412536', 'georgiou@mail.com', '2', 'GREECE');
+insert into tenants values ('98889', 'VASILIS', 'GEORGIOU', '07-JUN-1964', 'M', '+306912456339', 'vasgeorgiou@mail.com', '2', 'GREECE');
+insert into tenants values ('99999', 'JOHN', 'ANTONAKIS', '03-AUG-1978', 'M', '+338547126935', 'johnsmith@mail.com', '4', 'FRANCE');
+insert into tenants values ('98765', 'ELENA', 'PAPADOPOULOU', '10-NOV-1996', 'F', '+306989632569', 'papadelena@mail.com', '1', 'GREECE');
+insert into tenants values ('82457', 'CHRIS', 'FERELL', '30-AUG-1994', 'M', '+325587214568', 'chferell@mail.com', '1', 'BELGIUM');
+insert into tenants values ('34562', 'MATT', 'SMITH', '15-APR-1998', 'M', '+498749693919', '+498749693919', '6', 'GERMANY');
+insert into tenants values ('90504', 'MIHALIS', 'PAPAIOANNOU', '20-JUL-1998', 'M', '+396697412558', 'mpapaioannou@mail.com', '2', 'ITALY');
+insert into tenants values ('23456', 'MARIOS', 'THEODOROU', '18-FEB-1980', 'M', '+496000587423', 'mtheodorou@mail.com', '1', 'GERMANY');
+
+
+
+
+-- Inserting Values for the Rental table
+
+insert into rental values ('100', '65663688', '12345', '01-JAN-2020', '10-JAN-2020');
+insert into rental values ('101', '18789868', '44444', '16-JUL-2022', '20-JUL-2022');
+insert into rental values ('102', '35874715', '56734', '28-SEP-2022', '30-SEP-2022');
+insert into rental values ('103', '65663688', '56734', '30-APR-2022', '10-MAY-2022');
+insert into rental values ('104', '10145698', '44444', '30-AUG-2022', '15-SEP-2022');
+insert into rental values ('105', '24587969', '98889', '01-DEC-2022', '10-DEC-2022');
+insert into rental values ('106', '55203697', '99999', '06-MAY-2022', '16-MAY-2022');
+insert into rental values ('107', '79653325', '98765', '09-MAY-2022', '13-MAY-2022');
+insert into rental values ('108', '18789868', '82457', '05-AUG-2022', '15-AUG-2022');
+insert into rental values ('109', '35874715', '34562', '01-NOV-2022', '06-NOV-2022');
+insert into rental values ('110', '45782475', '90504', '05-MAR-2022', '08-MAR-2022');
+insert into rental values ('111', '32425010', '98889', '15-AUG-2022', '17-AUG-2022');
+insert into rental values ('112', '65599634', '23456', '16-OCT-2022', '19-OCT-2022');
+insert into rental values ('113', '35874715', '56734', '01-APR-2022', '04-APR-2022');
+
+
+
+-- Inserting Values for the Reviews table
+
+insert into reviews values ('10001', '01-NOV-2020', '2', 'FAR FROM THE CITY CENTRE', '12345', '65663688');
+insert into reviews values ('10002', '05-APR-2022', '3', 'GREAT HOSPITALITY', '56734', '35874715');
+insert into reviews values ('10003', '11-MAY-2022', '1', 'WOULD NOT RECOMMEND', '56734', '65663688');
+insert into reviews values ('10004', '14-MAY-2022', '5', 'GREAT', '98765', '79653325');
+insert into reviews values ('10005', '16-MAY-2022', '2', 'WOULD NOT STAY AGAIN', '99999', '55203697');
+insert into reviews values ('10006', '21-JUL-2022', '5', 'EVERYTHING CLEAN', '44444', '18789868');
+insert into reviews values ('10007', '17-AUG-2022', '4', 'COMFORT ENOUGH', '98889', '32425010');
+insert into reviews values ('10008', '16-SEP-2022', '2', 'NOT WHAT WE EXPECTED', '44444', '10145698');
+insert into reviews values ('10009', '05-OCT-2022', '4', 'PERFECT', '56734', '35874715');
+insert into reviews values ('10010', '25-OCT-2022', '4', 'GOOD ENOUGH', '23456', '65599634');
+insert into reviews values ('10011', '12-NOV-2022', '5', '100% RECOMMEND', '34562', '35874715');
+insert into reviews values ('10012', '12-DEC-2022', '4', 'PERFECT', '98889', '24587969');
+
+
+
+
+
+
+
+
+
+
+

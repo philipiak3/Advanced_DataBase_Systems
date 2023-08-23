@@ -1,0 +1,133 @@
+5a
+select * from apartment;
+
+5b
+select t_name, t_lastname, t_email from tenants order by t_lastname desc;
+
+5c
+select * from tenants where t_country='GERMANY';
+select * from owner where o_lastname like '%S%LOS';
+ select * from tenants where t_country not in ('GREECE', 'SPAIN');
+ select * from rental where to_char(r_startdate, 'YYYY')='2020' or to_char(r_enddate, 'YYYY')='2020';
+
+5d
+select a.a_city, count(*) from apartment a join rental r on a.a_id=r.r_ap_id group by a.a_city;
+
+select tenants.t_name, tenants.t_lastname, apartment.a_street from tenants 
+join rental on tenants.t_id=rental.r_tenant_id
+join apartment
+on apartment.a_id=rental.r_ap_id
+where apartment.a_city='THESSALONIKI';
+
+
+
+5e
+
+1.
+select t_lastname from tenants where t_lastname like 'A%S';
+
+2.
+select t_country, count(*) from tenants group by t_country;
+
+3.
+select a.a_id, count(*) from apartment a join rental r on a.a_id=r.r_ap_id group by r.r_ap_id order by count(*) desc;
+
+4.
+select owner.o_lastname, owner.o_name, owner.tin, apartment.a_id from owner join apartment on owner.tin=apartment.owner_tin order by owner.o_lastname;
+
+5. 
+select o.tin, o.o_name, o.o_lastname, count(*) from owner o join apartment a on o.tin=a.owner_tin group by o.tin, o.o_name, o.o_lastname order by count(*) desc;
+
+-- Here we present an alternative query, which provides us only with the owners who have the most apartments, with the help of a view.
+
+create view owner1 as 
+select o.tin, o.o_name, o.o_lastname, count(*) count1 from owner o join apartment a on o.tin=a.owner_tin group by o.tin, o.o_name, o.o_lastname;
+
+select tin, o_name, o_lastname, count1 from owner1 having count1 >= (select max(count1) from owner1) group by tin, o_name, o_lastname, count1;
+
+6.
+select a_city, a_price from apartment where a_price = (select max(a_price) from apartment);
+
+7.
+select count(*) from reviews where to_char(rev_date, 'YYYY')='2020';
+
+8.
+select t.t_name, t.t_lastname, count(*) from tenants t join reviews r on t.t_id=r.rev_tenant_id group by t.t_name, t.t_lastname order by count(*) desc;
+
+9.
+select r_ap_id from rental where to_char(r_startdate, 'MON')='AUG' or to_char(r_startdate, 'MON')='AUG';
+
+10.
+select a.a_id from apartment a join rental r on a.a_id=r.r_ap_id where a.a_id not in (r.r_ap_id);
+
+11.
+select t_name, t_lastname, to_char(t_dateofbirth, 'YYYY') as year from tenants where gender='F' and to_char(t_dateofbirth, 'YYYY') = (select min(to_char(t_dateofbirth, 'YYYY')) from tenants where gender='F' );
+
+-- In our case we only have 1 woman being born in 1990. If we had another woman born in the same year, we could alternatively use this query:
+
+select t_name, t_dateofbirth as dob from tenants where gender='F' order by t_dateofbirth fetch first row only;
+  
+12.
+ select o.o_name, o.o_lastname from owner o join apartment a on a.owner_tin=o.tin join rental r on a.a_id=r.r_ap_id where a.a_id not in r.r_ap_id;
+
+
+13.
+select tenants.t_name, tenants.t_lastname, apartment.a_street from tenants 
+join rental on tenants.t_id=rental.r_tenant_id
+join apartment
+on apartment.a_id=rental.r_ap_id
+where apartment.a_street like '%SAINT%';
+
+14.
+select rev_a_id, avg(rev_starpoint) from reviews group by rev_a_id order by avg(rev_starpoint) desc;
+
+15.
+select rev_a_id, rev_starpoint from reviews r join apartment a on r.rev_a_id=a.a_id where a.a_city='THESSALONIKI' order by r.rev_starpoint desc fetch first row only;
+
+16.
+select t.t_name, t.t_lastname, count(*) from tenants t join rental r on t.t_id=r.r_tenant_id group by t.t_name, t.t_lastname order by count(*) desc;
+
+17.
+select tenants.gender, avg(reviews.rev_starpoint) from tenants join reviews on tenants.t_id=reviews.rev_tenant_id group by tenants.gender;
+-- This looks like its wrong
+
+18.
+select a.a_city city, t.gender gender, count(*) rentals  from rental r
+join apartment a 
+on a.a_id=r.r_ap_id
+join tenants t
+on t.t_id=r.r_tenant_id
+group by t.gender, a.a_city
+order by t.gender, count(*) desc;
+
+19.
+create view v_tenants as
+select t_name, t_lastname, substr(t_name,0,4)||substr(t_lastname,0,4) t_username from tenants;
+
+select * from v_tenants;
+
+20.
+create view ap_revenue as select a.a_id, to_char(r.r_enddate,'YYYY') as year, (to_date(r.r_enddate, 'DD-MM-YYYY') - to_date(r.r_startdate, 'DD-MM-YYYY'))*a.a_price as revenue from rental r join apartment a on r.r_ap_id=a.a_id;
+select a_id, sum(revenue) as annual_revenue from ap_revenue group by a_id;
+
+select * from ap_revenue;
+
+-- This query is possibly not entirely correct. There is a chance that the start and end date not being in the same year. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

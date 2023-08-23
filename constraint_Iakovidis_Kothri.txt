@@ -1,0 +1,92 @@
+
+-- Alter Tables
+
+
+ alter table owner add (
+constraint tin primary key (tin), 
+unique (o_email));
+
+alter table owner 
+modify o_city default 'SPARTA';
+
+alter table apartment add (
+constraint a_id primary key (a_id),
+foreign key (owner_tin) references owner(tin));
+
+
+alter table apartment 
+modify a_city default 'SPARTA';
+
+alter table tenants add (
+constraint t_id primary key (t_id),
+constraint gender check (gender in('M', 'F', 'O')));
+
+
+alter table tenants 
+modify gender default 'F';
+
+alter table tenants
+modify t_country default 'GREECE';
+
+
+alter table rental add (
+constraint r_id primary key (r_id),
+foreign key (r_ap_id) references apartment(a_id),
+foreign key (r_tenant_id) references tenants(t_id));
+
+
+alter table reviews add (
+constraint rev_id primary key (rev_id),
+foreign key (rev_tenant_id) references tenants(t_id),
+foreign key (rev_a_id) references apartment(a_id));
+
+update owner set o_name=upper(o_name);
+
+
+-- We realised that our way of adding a foreign key constraint was not the fully proper one. The way we worked around that in our database, worked fine according to the outcome of all of our queries. The first way assigns a system-generated name to the foreign key and we will have trouble trying to drop the FK constraint.
+-- On the other hand, we present you the "proper" way of adding Foreign Key constraints for our tables. But since our entire work has been done around the first way, we shall proceed with what we started in order to avoid complications in our Test Plan.
+-- Below you can find the second way:
+
+
+ alter table owner add (
+constraint pk_tin primary key (tin), 
+unique (o_email));
+
+
+alter table owner 
+modify o_city default 'SPARTA';
+
+alter table apartment add constraint pk_a_id primary key (a_id);
+
+alter table apartment add constraint fk_ownertin foreign key (owner_tin) references owner(tin);
+
+alter table apartment modify a_city default 'SPARTA';
+
+alter table tenants add constraint pk_t_id primary key (t_id);
+
+alter table tenants add constraint gender check (gender in('M', 'F', 'O'));
+
+alter table tenants modify gender default 'F';
+
+alter table tenants modify t_country default 'GREECE';
+
+alter table rental add constraint pk_r_id primary key (r_id);
+
+alter table rental add constraint fk_r_ap_id foreign key (r_ap_id) references apartment(a_id);
+
+alter table rental add constraint fk_r_tenant_id foreign key (r_tenant_id) references tenants(t_id);
+
+alter table reviews add constraint pk_rev_id primary key (rev_id);
+
+alter table reviews add constraint fk_rev_tenant_id foreign key (rev_tenant_id) references tenants(t_id);
+
+alter table reviews add constraint fk_rev_a_id foreign key (rev_a_id) references apartment(a_id);
+
+
+
+
+
+
+
+
+
